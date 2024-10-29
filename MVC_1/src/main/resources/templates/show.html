@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship Application Summary</title>
+</head>
+<body>
+    <h1>Scholarship Application Summary</h1>
+
+    <!-- Student Basic Info Section -->
+    <h2>Student Basic Info</h2>
+    <p><strong>Name:</strong> <span th:text="${scholarshipFormDto.studentBasicInfoDto.student_name}"></span></p>
+    <p><strong>Age:</strong> <span th:text="${scholarshipFormDto.studentBasicInfoDto.student_age}"></span></p>
+    <p><strong>School:</strong> <span th:text="${scholarshipFormDto.studentBasicInfoDto.schoolOf}"></span></p>
+    <p><strong>Major:</strong> <span th:text="${scholarshipFormDto.studentBasicInfoDto.student_major}"></span></p>
+    <p><strong>Year:</strong> <span th:text="${scholarshipFormDto.studentBasicInfoDto.student_year}"></span></p>
+    <p><strong>GPA (GPAX):</strong> <span th:text="${scholarshipFormDto.studentBasicInfoDto.student_gpaX}"></span></p>
+    <p><strong>Advisor's Name:</strong> <span th:text="${scholarshipFormDto.studentBasicInfoDto.student_advisorName}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${scholarshipFormDto.studentBasicInfoDto.student_email}"></span></p>
+    <p><strong>Phone Number:</strong> <span th:text="${scholarshipFormDto.studentBasicInfoDto.student_phoneNumber}"></span></p>
+
+    <!-- Last Info Section -->
+    <h2>Last Info</h2>
+    <p><strong>Advisor Recommendation Letter:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.advisorRecommendationLetter}"></span></p>
+    <p><strong>Family Income Certification:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.familyIncomeCertifiacation}"></span></p>
+    <p><strong>Family Status Certification:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.familyStatusCertification}"></span></p>
+    <p><strong>Non-Parental Guardianship Certification:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.nonParentalGuardianshipCertification}"></span></p>
+    <p><strong>Total Family Income:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.totalFamilyIncome}"></span></p>
+    <p><strong>Total Family Expenses:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.totalFamilyExpensive}"></span></p>
+    <p><strong>Total Monthly Debt:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.totalMontylyDebt}"></span></p>
+    <p><strong>Signature:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.signature}"></span></p>
+
+    <!-- Scholarship History Section -->
+    <h2>Scholarship History</h2>
+    <p><strong>Scholarship Before:</strong> <span th:text="${scholarshipFormDto.scholarshipHistoryDto.scholarBefore ? 'Yes' : 'No'}"></span></p>
+    <p><strong>Scholarship Name:</strong> <span th:text="${scholarshipFormDto.scholarshipHistoryDto.scholarName}"></span></p>
+    <p><strong>Year of Receipt:</strong> <span th:text="${scholarshipFormDto.scholarshipHistoryDto.recieveYear}"></span></p>
+    <p><strong>Scholarship Amount:</strong> <span th:text="${scholarshipFormDto.scholarshipHistoryDto.scholarAmount}"></span></p>
+    <p><strong>How You Spent the Scholarship:</strong> <span th:text="${scholarshipFormDto.scholarshipHistoryDto.howYouSpendEssay}"></span></p>
+
+    <hr>
+    <button onclick="window.print()">Print Summary</button>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scholarship Application Form</title>
+</head>
+<body>
+	<h1>Scholarship Application Form</h1>
+
+	<form th:action="@{/submit-scholarship-form-view}" method="POST"
+		th:object="${scholarshipFormDto}">
+
+		<!-- Student Basic Info Section -->
+		<h2>Student Basic Info</h2>
+
+		<label for="student_id">Student ID:</label> <input type="number"
+			id="student_id" th:field="*{studentBasicInfoDto.student_id}" required><br>
+
+		<label for="student_name">Name:</label> <input type="text"
+			id="student_name" th:field="*{studentBasicInfoDto.student_name}"
+			required><br> <label for="student_age">Age:</label> <input
+			type="number" id="student_age"
+			th:field="*{studentBasicInfoDto.student_age}" required><br>
+
+		<label for="school_of">School:</label> <input type="text"
+			id="school_of" th:field="*{studentBasicInfoDto.schoolOf}" required><br>
+
+		<label for="student_major">Major:</label> <input type="text"
+			id="student_major" th:field="*{studentBasicInfoDto.student_major}"
+			required><br> <label for="student_year">Year:</label> <input
+			type="text" id="student_year"
+			th:field="*{studentBasicInfoDto.student_year}" required><br>
+
+		<label for="student_gpa">GPA (GPAX):</label> <input type="number"
+			step="0.01" id="student_gpa"
+			th:field="*{studentBasicInfoDto.student_gpaX}" required><br>
+
+		<label for="student_advisor_name">Advisor's Name:</label> <input
+			type="text" id="student_advisor_name"
+			th:field="*{studentBasicInfoDto.student_advisorName}" required><br>
+
+		<label for="student_email">Email:</label> <input type="email"
+			id="student_email" th:field="*{studentBasicInfoDto.student_email}"
+			required><br> <label for="student_phone_number">Phone
+			Number:</label> <input type="tel" id="student_phone_number"
+			th:field="*{studentBasicInfoDto.student_phoneNumber}" required><br>
+
+		<hr>
+
+		<!-- Last Info Section -->
+		<h2>Last Info</h2>
+		<label for="advisor_recommendation_letter">Advisor
+			Recommendation Letter:</label> <input type="text"
+			id="advisor_recommendation_letter"
+			th:field="*{lastInfoDto.advisorRecommendationLetter}" required><br>
+
+		<label for="family_income_certification">Family Income
+			Certification:</label> <input type="text" id="family_income_certification"
+			th:field="*{lastInfoDto.familyIncomeCertifiacation}" required><br>
+
+		<label for="family_status_certification">Family Status
+			Certification:</label> <input type="text" id="family_status_certification"
+			th:field="*{lastInfoDto.familyStatusCertification}" required><br>
+
+		<label for="non_parental_guardianship_certification">Non-Parental
+			Guardianship Certification:</label> <input type="text"
+			id="non_parental_guardianship_certification"
+			th:field="*{lastInfoDto.nonParentalGuardianshipCertification}"><br>
+
+		<label for="total_family_income">Total Family Income:</label> <input
+			type="number" id="total_family_income"
+			th:field="*{lastInfoDto.totalFamilyIncome}" required><br>
+
+		<label for="total_family_expensive">Total Family Expenses:</label> <input
+			type="number" id="total_family_expensive"
+			th:field="*{lastInfoDto.totalFamilyExpensive}" required><br>
+
+		<label for="total_montyly_debt">Total Monthly Debt:</label> <input
+			type="number" id="total_montyly_debt"
+			th:field="*{lastInfoDto.totalMontylyDebt}" required><br>
+
+		<label for="signature">Signature:</label> <input type="text"
+			id="signature" th:field="*{lastInfoDto.signature}" required><br>
+
+		<hr>
+
+		<!-- Scholarship History Section -->
+		<h2>Scholarship History</h2>
+		<label for="scholar_before">Have you received a scholarship
+			before?:</label> <input type="checkbox" id="scholar_before"
+			th:field="*{scholarshipHistoryDto.scholarBefore}"><br> <label
+			for="scholar_name">Scholarship Name:</label> <input type="text"
+			id="scholar_name" th:field="*{scholarshipHistoryDto.scholarName}"><br>
+
+		<label for="recieve_year">Year of Receipt:</label> <input
+			type="number" id="recieve_year"
+			th:field="*{scholarshipHistoryDto.recieveYear}"><br> <label
+			for="scholar_amount">Scholarship Amount:</label> <input type="number"
+			id="scholar_amount" th:field="*{scholarshipHistoryDto.scholarAmount}"><br>
+
+		<label for="how_you_spend_essay">How did you spend the
+			scholarship? (Essay):</label><br>
+		<textarea id="how_you_spend_essay"
+			th:field="*{scholarshipHistoryDto.howYouSpendEssay}" rows="5"
+			cols="40"></textarea>
+		<br> <input type="submit" value="Submit">
+	</form>
+</body>
+</html>
