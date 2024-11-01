@@ -8,8 +8,8 @@
 <body>
 	<h1>Scholarship Application Form</h1>
 
-	<form th:action="@{/submit-scholarship-form-view}" method="POST"
-		th:object="${scholarshipFormDto}">
+	<form th:action="@{/api/submit-scholarship-form-view}" method="POST"
+		th:object="${scholarshipFormDto}" enctype="multipart/form-data">
 
 		<!-- Student Basic Info Section -->
 		<h2>Student Basic Info</h2>
@@ -50,23 +50,22 @@
 
 		<!-- Last Info Section -->
 		<h2>Last Info</h2>
-		<label for="advisor_recommendation_letter">Advisor
-			Recommendation Letter:</label> <input type="text"
-			id="advisor_recommendation_letter"
-			th:field="*{lastInfoDto.advisorRecommendationLetter}" required><br>
+
+		<label for="file">Upload Advisor Recommendation Letter:</label>
+		<input type="file" id="file" th:field="*{lastInfoDto.advisorRecommendationLetterBase64}" required>
 
 		<label for="family_income_certification">Family Income
-			Certification:</label> <input type="text" id="family_income_certification"
-			th:field="*{lastInfoDto.familyIncomeCertifiacation}" required><br>
+			Certification:</label> <input type="file" id="family_income_certification"
+			th:field="*{lastInfoDto.familyIncomeCertifiacationBase64}" required><br>
 
 		<label for="family_status_certification">Family Status
-			Certification:</label> <input type="text" id="family_status_certification"
-			th:field="*{lastInfoDto.familyStatusCertification}" required><br>
+			Certification:</label> <input type="file" id="family_status_certification"
+			th:field="*{lastInfoDto.familyStatusCertificationBase64}" required><br>
 
 		<label for="non_parental_guardianship_certification">Non-Parental
-			Guardianship Certification:</label> <input type="text"
+			Guardianship Certification:</label> <input type="file"
 			id="non_parental_guardianship_certification"
-			th:field="*{lastInfoDto.nonParentalGuardianshipCertification}"><br>
+			th:field="*{lastInfoDto.nonParentalGuardianshipCertificationBase64}"><br>
 
 		<label for="total_family_income">Total Family Income:</label> <input
 			type="number" id="total_family_income"
@@ -80,8 +79,8 @@
 			type="number" id="total_montyly_debt"
 			th:field="*{lastInfoDto.totalMontylyDebt}" required><br>
 
-		<label for="signature">Signature:</label> <input type="text"
-			id="signature" th:field="*{lastInfoDto.signature}" required><br>
+		<label for="signature">Signature:</label> <input type="file"
+			id="signature" th:field="*{lastInfoDto.signatureBase64}" required><br>
 
 		<hr>
 

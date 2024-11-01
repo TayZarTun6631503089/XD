@@ -22,14 +22,23 @@
 
     <!-- Last Info Section -->
     <h2>Last Info</h2>
-    <p><strong>Advisor Recommendation Letter:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.advisorRecommendationLetter}"></span></p>
-    <p><strong>Family Income Certification:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.familyIncomeCertifiacation}"></span></p>
-    <p><strong>Family Status Certification:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.familyStatusCertification}"></span></p>
-    <p><strong>Non-Parental Guardianship Certification:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.nonParentalGuardianshipCertification}"></span></p>
+    <p><strong>Advisor Recommendation Letter:</strong> </p>
+    <img th:src="'data:image/png;base64,' + ${scholarshipFormDto.lastInfoDto.showAdvisorRecommendationLetter}" alt="Recommendation letter Image" style="max-width: 300px;">
+    <p><strong>Family Income Certification:</strong></p>
+    <img th:src="'data:image/png;base64,' + ${scholarshipFormDto.lastInfoDto.familyIncomeCertifiacation}" alt="Recommendation letter Image" style="max-width: 300px;">
+
+    <p><strong>Family Status Certification:</strong></p>
+    <img th:src="'data:image/png;base64,' + ${scholarshipFormDto.lastInfoDto.familyStatusCertification}" alt="Recommendation letter Image" style="max-width: 300px;">
+    <p><strong>Non-Parental Guardianship Certification:</strong></p>
+    <img th:src="'data:image/png;base64,' + ${scholarshipFormDto.lastInfoDto.nonParentalGuardianshipCertification}" alt="Recommendation letter Image" style="max-width: 300px;">
+
+    <p><strong>Signature:</strong></p>
+    <img th:src="'data:image/png;base64,' + ${scholarshipFormDto.lastInfoDto.signature}" alt="Recommendation letter Image" style="max-width: 300px;">
+
     <p><strong>Total Family Income:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.totalFamilyIncome}"></span></p>
     <p><strong>Total Family Expenses:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.totalFamilyExpensive}"></span></p>
     <p><strong>Total Monthly Debt:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.totalMontylyDebt}"></span></p>
-    <p><strong>Signature:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.signature}"></span></p>
+
 
     <!-- Scholarship History Section -->
     <h2>Scholarship History</h2>
