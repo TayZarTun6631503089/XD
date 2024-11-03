@@ -11,6 +11,7 @@ public class LastInfo {
 	public LastInfo() {}
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long student_id;
 	
 	@OneToOne

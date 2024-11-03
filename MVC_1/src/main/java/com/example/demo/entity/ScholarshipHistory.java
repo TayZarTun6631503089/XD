@@ -1,10 +1,6 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -14,6 +10,7 @@ public class ScholarshipHistory {
 	public ScholarshipHistory() {}
 	
 	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long student_id;
 
     private boolean scholarBefore;

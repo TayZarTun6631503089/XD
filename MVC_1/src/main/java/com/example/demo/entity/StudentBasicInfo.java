@@ -2,11 +2,7 @@ package com.example.demo.entity;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -17,6 +13,7 @@ public class StudentBasicInfo {
 	public StudentBasicInfo() {}
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long student_id;
 
 	private String student_name;

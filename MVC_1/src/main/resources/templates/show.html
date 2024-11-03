@@ -39,15 +39,16 @@
     <p><strong>Total Family Expenses:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.totalFamilyExpensive}"></span></p>
     <p><strong>Total Monthly Debt:</strong> <span th:text="${scholarshipFormDto.lastInfoDto.totalMontylyDebt}"></span></p>
 
-
     <!-- Scholarship History Section -->
     <h2>Scholarship History</h2>
-    <p><strong>Scholarship Before:</strong> <span th:text="${scholarshipFormDto.scholarshipHistoryDto.scholarBefore ? 'Yes' : 'No'}"></span></p>
-    <p><strong>Scholarship Name:</strong> <span th:text="${scholarshipFormDto.scholarshipHistoryDto.scholarName}"></span></p>
-    <p><strong>Year of Receipt:</strong> <span th:text="${scholarshipFormDto.scholarshipHistoryDto.recieveYear}"></span></p>
-    <p><strong>Scholarship Amount:</strong> <span th:text="${scholarshipFormDto.scholarshipHistoryDto.scholarAmount}"></span></p>
-    <p><strong>How You Spent the Scholarship:</strong> <span th:text="${scholarshipFormDto.scholarshipHistoryDto.howYouSpendEssay}"></span></p>
-
+    <div th:each="history : ${scholarshipFormDto.scholarshipHistoryDtos}">
+        <p><strong>Scholarship Before:</strong> <span th:text="${history.scholarBefore ? 'Yes' : 'No'}"></span></p>
+        <p><strong>Scholarship Name:</strong> <span th:text="${history.scholarName}"></span></p>
+        <p><strong>Year of Receipt:</strong> <span th:text="${history.recieveYear}"></span></p>
+        <p><strong>Scholarship Amount:</strong> <span th:text="${history.scholarAmount}"></span></p>
+        <p><strong>How You Spent the Scholarship:</strong> <span th:text="${history.howYouSpendEssay}"></span></p>
+        <hr>
+    </div>
     <hr>
     <button onclick="window.print()">Print Summary</button>
 </body>

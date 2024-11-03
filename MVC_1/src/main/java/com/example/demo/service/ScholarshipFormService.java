@@ -35,13 +35,20 @@ public class ScholarshipFormService {
     @Autowired
     private StudentBasicInfoRepo studentBasicInfoRepo;
 
+	@Transactional
 	public void saveScholarshipForm(ScholarshipFormDto scholarshipFormDto) {
 		StudentBasicInfo studentBasicInfo = studentBasicInfoRepo.findById(scholarshipFormDto.getStudentBasicInfoDto().getStudent_id()).orElseGet(()-> {
 
 			StudentBasicInfo newStudentBasicInfo = new StudentBasicInfo();
 	                newStudentBasicInfo.setStudent_id(scholarshipFormDto.getStudentBasicInfoDto().getStudent_id());
 	                newStudentBasicInfo.setStudent_name(scholarshipFormDto.getStudentBasicInfoDto().getStudent_name());
-	                // Set other fields from studentBasicInfoDTO...
+					newStudentBasicInfo.setStudent_age(scholarshipFormDto.getStudentBasicInfoDto().getStudent_age());
+					newStudentBasicInfo.setStudent_year(scholarshipFormDto.getStudentBasicInfoDto().getStudent_year());
+					newStudentBasicInfo.setStudent_major(scholarshipFormDto.getStudentBasicInfoDto().getStudent_major());
+					newStudentBasicInfo.setSchoolOf(scholarshipFormDto.getStudentBasicInfoDto().getSchoolOf());
+					newStudentBasicInfo.setStudent_gpaX(scholarshipFormDto.getStudentBasicInfoDto().getStudent_gpaX());
+					newStudentBasicInfo.setStudent_phoneNumber(scholarshipFormDto.getStudentBasicInfoDto().getStudent_phoneNumber());
+					newStudentBasicInfo.setStudent_email(scholarshipFormDto.getStudentBasicInfoDto().getStudent_email());
 	                return studentBasicInfoRepository.save(newStudentBasicInfo);
 
 		});
@@ -73,16 +80,18 @@ public class ScholarshipFormService {
 	    lastInfoRepository.save(lastInfo);
 
 	 // Create and save ScholarshipHistory entity
-	    ScholarshipHistory scholarshipHistory = new ScholarshipHistory();
-	    scholarshipHistory.setStudent_id(studentBasicInfo.getStudent_id()); // Set the student_id manually
-	    scholarshipHistory.setBasicInfo(studentBasicInfo); // Set the relationship
-	    scholarshipHistory.setScholarBefore(scholarshipFormDto.getScholarshipHistoryDto().isScholarBefore());
-	    scholarshipHistory.setScholarName(scholarshipFormDto.getScholarshipHistoryDto().getScholarName());
-	    scholarshipHistory.setRecieveYear(scholarshipFormDto.getScholarshipHistoryDto().getRecieveYear());
-	    scholarshipHistory.setScholarAmount(scholarshipFormDto.getScholarshipHistoryDto().getScholarAmount());
-	    scholarshipHistory.setHowYouSpendEssay(scholarshipFormDto.getScholarshipHistoryDto().getHowYouSpendEssay());
+		ScholarshipHistory scholarshipHistory = new ScholarshipHistory();
+		for (ScholarshipHistoryDto scholarshipHistoryDto : scholarshipFormDto.getScholarshipHistoryDtos()) {
+			scholarshipHistory.setStudent_id(studentBasicInfo.getStudent_id());
+			scholarshipHistory.setScholarBefore(scholarshipHistoryDto.isScholarBefore());
+			scholarshipHistory.setScholarName(scholarshipHistoryDto.getScholarName());
+			scholarshipHistory.setRecieveYear(scholarshipHistoryDto.getRecieveYear());
+			scholarshipHistory.setScholarAmount(scholarshipHistoryDto.getScholarAmount());
+			scholarshipHistory.setBasicInfo(studentBasicInfo);
+			scholarshipHistory.setHowYouSpendEssay(scholarshipHistoryDto.getHowYouSpendEssay());
+			scholarshipHistoryRepository.save(scholarshipHistory);
+		}
 
-	    scholarshipHistoryRepository.save(scholarshipHistory);
 
 
 	}

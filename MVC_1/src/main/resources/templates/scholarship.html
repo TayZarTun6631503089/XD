@@ -86,24 +86,67 @@
 
 		<!-- Scholarship History Section -->
 		<h2>Scholarship History</h2>
-		<label for="scholar_before">Have you received a scholarship
-			before?:</label> <input type="checkbox" id="scholar_before"
-			th:field="*{scholarshipHistoryDto.scholarBefore}"><br> <label
-			for="scholar_name">Scholarship Name:</label> <input type="text"
-			id="scholar_name" th:field="*{scholarshipHistoryDto.scholarName}"><br>
+		<div id="scholarships-wrapper">
+			<div class="scholarship-group" th:each="history, stat : *{scholarshipHistoryDtos}">
+				<label th:for="${'scholar_before_' + stat.index}">Have you received a scholarship before?</label>
+				<label>
+					<input type="checkbox" th:id="${'scholar_before_' + stat.index}" th:field="*{scholarshipHistoryDtos[__${stat.index}__].scholarBefore}">
+				</label><br>
 
-		<label for="recieve_year">Year of Receipt:</label> <input
-			type="number" id="recieve_year"
-			th:field="*{scholarshipHistoryDto.recieveYear}"><br> <label
-			for="scholar_amount">Scholarship Amount:</label> <input type="number"
-			id="scholar_amount" th:field="*{scholarshipHistoryDto.scholarAmount}"><br>
+				<label th:for="${'scholar_name_' + stat.index}">Scholarship Name:</label>
+				<label>
+					<input type="text" th:id="${'scholar_name_' + stat.index}" th:field="*{scholarshipHistoryDtos[__${stat.index}__].scholarName}">
+				</label><br>
 
-		<label for="how_you_spend_essay">How did you spend the
-			scholarship? (Essay):</label><br>
-		<textarea id="how_you_spend_essay"
-			th:field="*{scholarshipHistoryDto.howYouSpendEssay}" rows="5"
-			cols="40"></textarea>
-		<br> <input type="submit" value="Submit">
+				<label th:for="${'recieve_year_' + stat.index}">Year of Receipt:</label>
+				<label>
+					<input type="number" th:id="${'recieve_year_' + stat.index}" th:field="*{scholarshipHistoryDtos[__${stat.index}__].recieveYear}">
+				</label><br>
+
+				<label th:for="${'scholar_amount_' + stat.index}">Scholarship Amount:</label>
+				<label>
+					<input type="number" th:id="${'scholar_amount_' + stat.index}" th:field="*{scholarshipHistoryDtos[__${stat.index}__].scholarAmount}">
+				</label><br>
+
+				<label th:for="${'how_you_spend_essay_' + stat.index}">How did you spend the scholarship? (Essay):</label><br>
+				<label>
+					<textarea th:id="${'how_you_spend_essay_' + stat.index}" th:field="*{scholarshipHistoryDtos[__${stat.index}__].howYouSpendEssay}" rows="5" cols="40"></textarea>
+				</label><br>
+			</div>
+		</div>
+		<button type="button" id="add-scholarship-btn">Add Another Scholarship History</button><br>
+		<input type="submit" value="Submit">
 	</form>
 </body>
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		document.getElementById('add-scholarship-btn').addEventListener('click', function () {
+			const container = document.querySelector('.scholarship-group:last-child'); // Ensure the last group is selected
+			const clone = container.cloneNode(true);
+			const index = document.querySelectorAll('.scholarship-group').length; // New index for cloned group
+
+			// Reset input fields in the cloned group
+			clone.querySelectorAll('input, textarea').forEach(input => {
+				if (input.type !== 'checkbox') {
+					input.value = '';
+				} else {
+					input.checked = false; // Uncheck checkboxes
+				}
+
+				// Update names and IDs
+				input.name = input.name.replace(/\[\d+\]/, `[${index}]`);
+				input.id = input.id.replace(/_\d+$/, `_${index}`);
+			});
+
+			// Update labels
+			clone.querySelectorAll('label').forEach(label => {
+				if (label.htmlFor) {
+					label.htmlFor = label.htmlFor.replace(/_\d+$/, `_${index}`);
+				}
+			});
+
+			document.getElementById('scholarships-wrapper').appendChild(clone);
+		});
+	});
+</script>
 </html>

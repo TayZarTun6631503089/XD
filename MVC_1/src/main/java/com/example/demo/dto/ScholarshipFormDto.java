@@ -2,11 +2,13 @@ package com.example.demo.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ScholarshipFormDto {
 
 	private LastInfoDto lastInfoDto;
-	private ScholarshipHistoryDto scholarshipHistoryDto;
+	private List<ScholarshipHistoryDto> scholarshipHistoryDtos;
 	private StudentBasicInfoDto studentBasicInfoDto;
 
 	
